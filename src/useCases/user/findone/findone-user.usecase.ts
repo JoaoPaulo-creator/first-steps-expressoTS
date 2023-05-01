@@ -1,20 +1,18 @@
 import { UserRepository } from "@repositories/user/user.repository";
 import { provide } from "inversify-binding-decorators";
-import {
-    IFindOneUserRequestDTO,
-    IFindOneUserResponseDTO,
-} from "./findone-user.dto";
+import { ICreateUserResponseDTO } from "../create/create-user.dto";
+import { IFindOneUserRequestDTO } from "./findone-user.dto";
 
 @provide(FindOneUserUseCase)
 class FindOneUserUseCase {
     constructor(private userRepository: UserRepository) {}
 
-    execute(data: IFindOneUserRequestDTO): IFindOneUserResponseDTO | null {
+    execute(data: IFindOneUserRequestDTO): ICreateUserResponseDTO | null {
         try {
             const { id } = data;
             const user = this.userRepository.find(id);
 
-            let response: IFindOneUserResponseDTO;
+            let response: ICreateUserResponseDTO;
 
             if (user !== null) {
                 response = {

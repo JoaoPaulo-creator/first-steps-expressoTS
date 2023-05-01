@@ -3,7 +3,7 @@ import { controller, httpGet, response } from "inversify-express-utils";
 import { IFindAllUserResponseDTO } from "./findall-user.dto";
 import { FindAllUserUseCase } from "./findall-user.usecase";
 
-@controller("/user/findall")
+@controller("/users/findall")
 class FindAllUserController extends BaseController {
     constructor(private findallUserUseCase: FindAllUserUseCase) {
         super("findall-user-controller");
