@@ -5,6 +5,7 @@ import {
     requestParam,
     response,
 } from "inversify-express-utils";
+import { IFindOneUserRequestDTO } from "./findone-user.dto";
 import { FindOneUserUseCase } from "./findone-user.usecase";
 
 @controller("/user")
@@ -14,7 +15,10 @@ class FindOneUserController extends BaseController {
     }
 
     @httpGet("/:id")
-    execute(@response() res: any, @requestParam() id): any {
+    execute(
+        @response() res: any,
+        @requestParam() id: IFindOneUserRequestDTO,
+    ): any {
         return this.callUseCase(
             this.findOneUserUseCase.execute(id),
             res,
